@@ -3,6 +3,26 @@ import 'package:ecommerce_app/domain/ui_helper.dart';
 import 'package:flutter/material.dart';
 
 class NavCartPage extends StatelessWidget{
+  List<Map<String,dynamic>> cartItems = [
+    {
+      "image" : "assets/images/noise_earbuds.png",
+      "name" : "Wireless Headphones",
+      "category" : "Electronics",
+      "amount" : "1500"
+    },
+    {
+      "image" : "assets/images/women_sweater.png",
+      "name" : "Women Sweater",
+      "category" : "Women's Fashion",
+      "amount" : "700"
+    },
+    {
+      "image" : "assets/images/nike_quest_shoes.png",
+      "name" : "Nike Quest Shoes",
+      "category" : "Shoes",
+      "amount" : "5000"
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +44,7 @@ class NavCartPage extends StatelessWidget{
         children: [
           Expanded(
             child: ListView.builder(
+              itemCount: cartItems.length,
               itemBuilder: (context, index) {
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
@@ -46,7 +67,7 @@ class NavCartPage extends StatelessWidget{
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(15),
-                          child: Image.asset("assets/images/noise_earbuds.png"),
+                          child: Image.asset(cartItems[index]["image"]),
                         ),
                       ),
                       const SizedBox(width: 20,),
@@ -59,11 +80,11 @@ class NavCartPage extends StatelessWidget{
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text("Name",style: myTextStyleBold18(),),
+                                  Text(cartItems[index]["name"],style: myTextStyleBold18(),),
                                   ImageIcon(const AssetImage("assets/icons/trash.png"),size: 20,color: AppColors.primaryColor,)
                                 ],
                               ),
-                              Text("Sub title",style: myTextStyle14(fontColor: AppColors.darkGreyColor),),
+                              Text(cartItems[index]["category"],style: myTextStyle14(fontColor: AppColors.darkGreyColor),),
                               const SizedBox(height: 10,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +92,7 @@ class NavCartPage extends StatelessWidget{
                                   Row(
                                     children: [
                                       Text("₹",style: myTextStyleBold16(),),
-                                      Text("200",style: myTextStyleBold16(),),
+                                      Text(cartItems[index]["amount"],style: myTextStyleBold16(),),
                                     ],
                                   ),
                                   Container(
