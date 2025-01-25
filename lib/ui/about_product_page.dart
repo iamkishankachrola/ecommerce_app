@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/domain/ui_helper.dart';
 import 'package:ecommerce_app/ui/nav_pages/nav_cart_page.dart';
-import 'package:ecommerce_app/ui/nav_pages/nav_home_page.dart';
 import 'package:ecommerce_app/ui/tab_pages/description_page.dart';
 import 'package:ecommerce_app/ui/tab_pages/reviews_page.dart';
 import 'package:ecommerce_app/ui/tab_pages/specification_page.dart';
