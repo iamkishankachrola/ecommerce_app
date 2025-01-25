@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/domain/app_constant.dart';
+import 'package:ecommerce_app/ui/about_product_page.dart';
 import 'package:flutter/material.dart';
 import '../../domain/app_colors.dart';
 import '../../domain/ui_helper.dart';
@@ -369,7 +370,7 @@ class _NavHomePageState extends State<NavHomePage> {
                   Text("See all",style: myTextStyle14(fontColor: AppColors.darkGreyColor),)
                 ],
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(height:10),
               SizedBox(
                 width: double.infinity,
                 child: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -378,113 +379,119 @@ class _NavHomePageState extends State<NavHomePage> {
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20
                 ), shrinkWrap: true,physics: const NeverScrollableScrollPhysics(),itemCount: AppConstant.specialItemList.length,itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.lightGreyColor
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(topRight: Radius.circular(20),bottomLeft: Radius.circular(10)),
-                                color: AppColors.primaryColor,
-                              ),
-                              child: IconButton(onPressed: (){}, icon:Image.asset("assets/icons/heart.png",width: 20,height: 20,color: Colors.white,)),
-
-                            )
-                          ],
-                        ),
-                        Center(child: Image.asset(AppConstant.specialItemList[index].image,width: 100,height: 100,)),
-                        const SizedBox(height: 10,),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Text(AppConstant.specialItemList[index].name,style: myTextStyleBold14(),),
-                        ),
-                        const SizedBox(height: 5,),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SpecialItemPage(),));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.lightGreyColor
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Row(
-                                children: [
-                                  Text("₹",style: myTextStyleBold14(),),
-                                  Text(AppConstant.specialItemList[index].amount.toString(),style: myTextStyleBold14(),),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 80,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Stack(
-                                        alignment: Alignment.center,
-                                        children:[
-                                          Container(
-                                            width: 20,
-                                            height: 20,
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(50),
-                                                border: Border.all(color: Colors.black)
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 15,
-                                            height: 15,
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(50),
-                                                color: AppConstant.specialItemList[index].firstColor
-                                            ),
-                                          ),
-                                        ]),
-                                    Container(
-                                      width: 15,
-                                      height: 15,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: AppConstant.specialItemList[index].secondColor
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 15,
-                                      height: 15,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: AppConstant.specialItemList[index].thirdColor
-                                      ),
-                                    ),
-                                    Stack(
-                                        alignment: Alignment.center,
-                                        children:[
-                                          Container(
-                                            width: 15,
-                                            height: 15,
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(50),
-                                                border: Border.all(color:AppColors.darkGreyColor)
-                                            ),
-                                          ),
-                                          Text("+2",style: myTextStyle6(fontColor: AppColors.darkGreyColor),)
-                                        ]),
-                                  ],
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(topRight: Radius.circular(20),bottomLeft: Radius.circular(10)),
+                                  color: AppColors.primaryColor,
                                 ),
+                                child: IconButton(onPressed: (){}, icon:Image.asset("assets/icons/heart.png",width: 20,height: 20,color: Colors.white,)),
+
                               )
                             ],
                           ),
-                        )
-                      ],
+                          Center(child: Image.asset(AppConstant.specialItemList[index].image,width: 100,height: 100,)),
+                          const SizedBox(height: 10,),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(AppConstant.specialItemList[index].name,style: myTextStyleBold14(),),
+                          ),
+                          const SizedBox(height: 5,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text("₹",style: myTextStyleBold14(),),
+                                    Text(AppConstant.specialItemList[index].amount.toString(),style: myTextStyleBold14(),),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: 80,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Stack(
+                                          alignment: Alignment.center,
+                                          children:[
+                                            Container(
+                                              width: 20,
+                                              height: 20,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(50),
+                                                  border: Border.all(color: Colors.black)
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 15,
+                                              height: 15,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(50),
+                                                  color: AppConstant.specialItemList[index].firstColor
+                                              ),
+                                            ),
+                                          ]),
+                                      Container(
+                                        width: 15,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: AppConstant.specialItemList[index].secondColor
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 15,
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: AppConstant.specialItemList[index].thirdColor
+                                        ),
+                                      ),
+                                      Stack(
+                                          alignment: Alignment.center,
+                                          children:[
+                                            Container(
+                                              width: 15,
+                                              height: 15,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(50),
+                                                  border: Border.all(color:AppColors.darkGreyColor)
+                                              ),
+                                            ),
+                                            Text("+2",style: myTextStyle6(fontColor: AppColors.darkGreyColor),)
+                                          ]),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },),
 
-              )
+              ),
+              const SizedBox(height:20)
             ],
           ),
         )

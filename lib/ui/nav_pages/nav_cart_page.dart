@@ -21,7 +21,7 @@ class NavCartPage extends StatelessWidget{
       "name" : "Nike Quest Shoes",
       "category" : "Shoes",
       "amount" : "5000"
-    }
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,9 @@ class NavCartPage extends StatelessWidget{
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            IconButton(onPressed: (){},icon:  const Icon(Icons.arrow_back_ios_rounded,size: 20,),
+            IconButton(onPressed: (){
+              Navigator.pop(context);
+            },icon:  const Icon(Icons.arrow_back_ios_rounded,size: 20,),
             style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.white)),),
           ],
         ),
@@ -49,7 +51,7 @@ class NavCartPage extends StatelessWidget{
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
                 width: double.infinity,
-                height: 150,
+                height: 130,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white
@@ -59,21 +61,21 @@ class NavCartPage extends StatelessWidget{
                   child: Row(
                     children: [
                       Container(
-                        width: 100,
-                        height: 100,
+                        width: 90,
+                        height: 90,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           color: AppColors.lightGreyColor
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(12),
                           child: Image.asset(cartItems[index]["image"]),
                         ),
                       ),
                       const SizedBox(width: 20,),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 15),
+                          padding: const EdgeInsets.only(top:10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -127,14 +129,15 @@ class NavCartPage extends StatelessWidget{
           ),
           const SizedBox(height: 20,),
           Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20,bottom: 20),
+            padding: const EdgeInsets.only(left: 20,right: 20,bottom: 100),
             child: ElevatedButton(onPressed: (){
                   showModalBottomSheet(context: context, builder: (context) {
                     return Container(
                       width: double.infinity,
-                      height: 300,
+                      height: 100,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20)
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white
                       ),
                       child: Column(
                         children: [
@@ -162,7 +165,7 @@ class NavCartPage extends StatelessWidget{
                   minimumSize: const Size(double.infinity,50),
                   backgroundColor: AppColors.primaryColor ,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))
-              ), child: Text("Place Order",style: myTextStyle18(fontColor: Colors.white),),
+              ), child: Text("Place Order",style: myTextStyleBold20(fontColor: Colors.white),),
             ),
           )
         ],
