@@ -10,7 +10,7 @@ class CustomTextFieldWidget extends StatelessWidget{
   TextEditingController? controller;
   bool obscureText;
   TextInputType keyboardType;
-  CustomTextFieldWidget({required this.hintText, required this.preFixIcon,required this.controller,required this.keyboardType,this.suffixIcon,this.obscureText = false});
+  CustomTextFieldWidget({super.key, required this.hintText, required this.preFixIcon,required this.controller,required this.keyboardType,this.suffixIcon,this.obscureText = false});
   @override
   Widget build(BuildContext context) {
     return TextField(

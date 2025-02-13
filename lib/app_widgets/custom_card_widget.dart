@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomCardWidget extends StatelessWidget{
   String imageUrl;
-  CustomCardWidget({required this.imageUrl});
+  CustomCardWidget({super.key, required this.imageUrl});
   @override
   Widget build(BuildContext context) {
     return Card(
