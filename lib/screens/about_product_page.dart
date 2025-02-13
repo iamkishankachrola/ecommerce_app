@@ -1,13 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/domain/ui_helper.dart';
-import 'package:ecommerce_app/ui/nav_pages/nav_cart_page.dart';
-import 'package:ecommerce_app/ui/tab_pages/description_page.dart';
-import 'package:ecommerce_app/ui/tab_pages/reviews_page.dart';
-import 'package:ecommerce_app/ui/tab_pages/specification_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce_app/screens/tab_pages/description_page.dart';
+import 'package:ecommerce_app/screens/tab_pages/reviews_page.dart';
+import 'package:ecommerce_app/screens/tab_pages/specification_page.dart';
 import 'package:flutter/material.dart';
-
-import '../domain/app_colors.dart';
+import '../utils/util_helper.dart';
+import 'nav_pages/nav_cart_page.dart';
 
 class SpecialItemPage extends StatefulWidget{
   @override

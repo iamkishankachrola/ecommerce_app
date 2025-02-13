@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/data/local/model/special_item_model.dart';
-import 'package:ecommerce_app/domain/app_colors.dart';
 import 'package:flutter/material.dart';
+import '../utils/util_helper.dart';
 
 class AppConstant{
   static List<SpecialItemModel> specialItemList = [

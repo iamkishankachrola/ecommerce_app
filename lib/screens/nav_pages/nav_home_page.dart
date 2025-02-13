@@ -1,9 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/domain/app_constant.dart';
-import 'package:ecommerce_app/ui/about_product_page.dart';
 import 'package:flutter/material.dart';
-import '../../domain/app_colors.dart';
-import '../../domain/ui_helper.dart';
+import '../../utils/util_helper.dart';
+import '../about_product_page.dart';
 
 class NavHomePage extends StatefulWidget{
   @override
@@ -79,7 +78,7 @@ class _NavHomePageState extends State<NavHomePage> {
               const SizedBox(height: 15,),
               SearchBar(
                 padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 20)),
-                backgroundColor: WidgetStatePropertyAll(AppColors.lightGreyColor),
+                backgroundColor: const WidgetStatePropertyAll(AppColors.lightGreyColor),
                 elevation: const WidgetStatePropertyAll(0),
                 hintText: "Search...",
                 hintStyle: WidgetStatePropertyAll(myTextStyle14()),

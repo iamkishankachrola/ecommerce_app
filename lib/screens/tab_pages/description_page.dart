@@ -1,8 +1,7 @@
-import 'package:ecommerce_app/domain/app_colors.dart';
-import 'package:ecommerce_app/domain/ui_helper.dart';
 import 'package:flutter/cupertino.dart';
+import '../../utils/util_helper.dart';
 
-class ReviewsPage extends StatelessWidget{
+class DescriptionPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return  Padding(
@@ -10,7 +9,7 @@ class ReviewsPage extends StatelessWidget{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Reviews Here!!",style: myTextStyle14(fontColor: AppColors.darkGreyColor),)
+          Text("Description Here!!",style: myTextStyle14(fontColor: AppColors.darkGreyColor),)
         ],
       ),
     );

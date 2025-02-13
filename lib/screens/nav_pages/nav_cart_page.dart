@@ -1,6 +1,5 @@
-import 'package:ecommerce_app/domain/app_colors.dart';
-import 'package:ecommerce_app/domain/ui_helper.dart';
 import 'package:flutter/material.dart';
+import '../../utils/util_helper.dart';
 
 class NavCartPage extends StatelessWidget{
   List<Map<String,dynamic>> cartItems = [
