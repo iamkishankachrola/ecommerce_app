@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/domain/app_constant.dart';
+import 'package:ecommerce_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 import '../../utils/util_helper.dart';
 import '../about_product_page.dart';
