@@ -52,8 +52,8 @@ TextStyle myTextStyle12({Color fontColor = Colors.black}) => TextStyle(
     color: fontColor,
     fontFamily: "Mulish"
 );
-TextStyle myTextStyle6({Color fontColor = Colors.black}) => TextStyle(
-    fontSize: 6,
+TextStyle myTextStyle7({Color fontColor = Colors.black}) => TextStyle(
+    fontSize: 7,
     color: fontColor,
     fontFamily: "Mulish"
 );

@@ -6,7 +6,6 @@ class CustomCardWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
       elevation: 3,
       shadowColor: Colors.black,
       child: SizedBox(

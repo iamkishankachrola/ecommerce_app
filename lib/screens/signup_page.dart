@@ -17,13 +17,11 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: AppColors.loginScreenBgColor,
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child:  Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 70,),
@@ -33,7 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Text("Create an account",style: myTextStyleBold24()),
                 const SizedBox(width: 5,),
-                Image.asset("assets/images/three_star.jpg",width: 24,height: 24,)
+                Image.asset("assets/images/shooting_star.png",width: 24,height: 24,)
               ],
             ),
             const SizedBox(height: 5,),

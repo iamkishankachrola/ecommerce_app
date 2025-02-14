@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_app/app_widgets/custom_slider_sizedbox.dart';
 import 'package:ecommerce_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
+import '../../app_widgets/custom_container.dart';
 import '../../utils/util_helper.dart';
 import '../about_product_page.dart';
 
@@ -11,46 +13,8 @@ class NavHomePage extends StatefulWidget{
 
 class _NavHomePageState extends State<NavHomePage> {
   int currentIndex = 0;
-  List<String> imageList = [
-    "assets/images/shoes.jpg",
-    "assets/images/galaxys25ultra.jpg",
-    "assets/images/appliances.jpg",
-    "assets/images/shirts.jpg"
-  ];
-  List<Map<String,dynamic>> categoryList = [
-    {
-      "image" : "assets/images/nike_shoes.jpeg",
-      "name" : "Shoes"
-    },
-    {
-      "image" : "assets/images/mobiles.jpeg",
-      "name" : "Mobiles"
-    },
-    {
-      "image" : "assets/images/leptops.jpg",
-      "name" : "Electronics"
-    },
-    {
-      "image" : "assets/images/men_fashion.jpeg",
-      "name" : "   Men's \n\t\tFashion"
-    },
-    {
-      "image" : "assets/images/women_fashion.jpeg",
-      "name" : " Women's \n\t\tFashion"
-    },
-    {
-      "image" : "assets/images/jwellery_items.jpeg",
-      "name" : "Jewellery "
-    },
-    {
-      "image" : "assets/images/appliances_items.jpg",
-      "name" : "Appliances"
-    },
-    {
-      "image" : "assets/images/mackup_item.jpg",
-      "name" : "Beauty"
-    },
-  ];
+
+
   final CarouselController carouselController = CarouselController();
   @override
   Widget build(BuildContext context) {
@@ -94,256 +58,61 @@ class _NavHomePageState extends State<NavHomePage> {
                 ],
               ),
               const SizedBox(height: 20,),
-              CarouselSlider(items: [
-                SizedBox(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Stack(
-                      children: [
-                        Image.asset("assets/images/shoes.jpg",fit: BoxFit.fill,width: double.infinity,height: double.infinity,),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Super Sale",style: myTextStyleBold24()),
-                              Text("Discount",style: myTextStyleBold24()),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text("Up to ",style: myTextStyleBold18()),
-                                  Text("50% ",style: myTextStyleExtraBold28()),
-                                ],
-                              ),
-                              const SizedBox(height: 5,),
-                              ElevatedButton(onPressed: (){},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:AppColors.primaryColor,
-                                    foregroundColor: Colors.white
-                                ), child:const Text("Shop Now"),)
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 150,
-                          child: Row(
-                              children:
-                              imageList.asMap().entries.map((entry) {
-                                return currentIndex == entry.key ? Container(
-                                  width: 17 ,
-                                  height: 7,
-                                  margin: const EdgeInsets.symmetric(horizontal:2),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: Colors.black),
-                                      color: AppColors.primaryColor
-                                  ),
-                                ) : Container(
-                                  width: 7,
-                                  height: 7,
-                                  margin: const EdgeInsets.symmetric(horizontal:2),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(color: Colors.black),
-                                      color: Colors.white
-                                  ),
-                                );
-                              },).toList()
-
-                          ),)
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Stack(
-                      children: [
-                        Image.asset( "assets/images/galaxys25ultra.jpg",fit: BoxFit.fill,width: double.infinity,height: double.infinity,),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("SAMSUNG",style: myTextStyleBold24(fontColor: Colors.white)),
-                              Text("Galaxy S25 Ultra",style: myTextStyleBold24(fontColor: Colors.white)),
-                              Text("Pre-book & get benefits",style: myTextStyleBold14(fontColor: Colors.white),),
-                              Text("Worth ₹21,000",style: myTextStyleBold14(fontColor: Colors.white),),
-                              const SizedBox(height: 5,),
-                              ElevatedButton(onPressed: (){},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:AppColors.primaryColor,
-                                    foregroundColor: Colors.white
-                                ), child:const Text("Shop Now"),)
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 150,
-                          child: Row(
-                              children:
-                              imageList.asMap().entries.map((e) {
-                                return GestureDetector(
-                                    child: currentIndex == e.key ? Container(
-                                      width: 17 ,
-                                      height: 7,
-                                      margin: const EdgeInsets.symmetric(horizontal:2),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(color: Colors.black),
-                                          color:AppColors.primaryColor
-                                      ),
-                                    ) : Container(
-                                      width: 7,
-                                      height: 7,
-                                      margin: const EdgeInsets.symmetric(horizontal:2),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          border: Border.all(color: Colors.black),
-                                          color: Colors.white
-                                      ),
-                                    )
-                                );
-                              },).toList()
-
-                          ),)
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Stack(
-                      children: [
-                        Image.asset( "assets/images/appliances.jpg",fit: BoxFit.fill,width: double.infinity,height: double.infinity),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Appliances Upgrade Days",style: myTextStyleBold14()),
-                              Text("Starting ₹4,999",style: myTextStyleExtraBold28()),
-                              const SizedBox(height: 30,),
-                              ElevatedButton(onPressed: (){},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:AppColors.primaryColor,
-                                    foregroundColor: Colors.white
-                                ), child:const Text("Shop Now"),)
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 150,
-                          child: Row(
-                              children:
-                              imageList.asMap().entries.map((e) {
-                                return GestureDetector(
-                                    child: currentIndex == e.key ? Container(
-                                      width: 17 ,
-                                      height: 7,
-                                      margin: const EdgeInsets.symmetric(horizontal:2),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(color: Colors.black),
-                                          color: AppColors.primaryColor
-                                      ),
-                                    ) : Container(
-                                      width: 7,
-                                      height: 7,
-                                      margin: const EdgeInsets.symmetric(horizontal:2),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          border: Border.all(color: Colors.black),
-                                          color: Colors.white
-                                      ),
-                                    )
-                                );
-                              },).toList()
-
-                          ),)
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Stack(
-                      children: [
-                        Image.asset(  "assets/images/shirts.jpg",fit: BoxFit.fill,width: double.infinity,height: double.infinity),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20,bottom: 15),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Men's Clothing",style: myTextStyleBold24(fontColor: Colors.white)),
-                              Text("Min. 50% off",style: myTextStyleExtraBold28(fontColor: Colors.white)),
-                              const SizedBox(height: 30),
-                              ElevatedButton(onPressed: (){},
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor:AppColors.primaryColor,
-                                    foregroundColor: Colors.white
-                                ), child:const Text("Shop Now"),)
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 150,
-                          child: Row(
-                              children:
-                              imageList.asMap().entries.map((e) {
-                                return GestureDetector(
-                                    child: currentIndex == e.key ? Container(
-                                      width: 17 ,
-                                      height: 7,
-                                      margin: const EdgeInsets.symmetric(horizontal:2),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(color: Colors.black),
-                                          color: AppColors.primaryColor
-                                      ),
-                                    ) : Container(
-                                      width: 7,
-                                      height: 7,
-                                      margin: const EdgeInsets.symmetric(horizontal:2),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          border: Border.all(color: Colors.black),
-                                          color: Colors.white
-                                      ),
-                                    )
-                                );
-                              },).toList()
-
-                          ),)
-                      ],
-                    ),
-                  ),
-                ),
-              ],options: CarouselOptions(
-                autoPlay: true,
-                viewportFraction: 1,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
-              )),
+              Stack(
+                children: [
+                  CarouselSlider(items: [
+                    CustomSliderSizedBox(imgUrl: "assets/images/shoes.jpg", title1: "Super Sale", title2: "Discount", description1: "Up to ", description2: "50%",
+                      title1TextStyle: myTextStyleBold24(), title2TextStyle: myTextStyleBold24() , desc1TextStyle: myTextStyleBold18(), desc2TextStyle: myTextStyleExtraBold28(), currentIndex: currentIndex,),
+                    CustomSliderSizedBox(imgUrl: "assets/images/galaxys25ultra.jpg", title1: "SAMSUNG", title2: "Galaxy S25 Ultra", description1: "Pre-book & get benefits", description2: "Worth ₹21,000",
+                        title1TextStyle: myTextStyleBold24(fontColor: Colors.white), title2TextStyle: myTextStyleBold24(fontColor: Colors.white) , desc1TextStyle: myTextStyleBold14(fontColor: Colors.white), desc2TextStyle: myTextStyleBold14(fontColor: Colors.white),currentIndex: currentIndex),
+                    CustomSliderSizedBox(imgUrl: "assets/images/appliances.jpg", title1: "Appliances Upgrade Days", title2: "Starting ₹4,999", description1: "", description2: "",
+                        title1TextStyle: myTextStyleBold14(), title2TextStyle: myTextStyleExtraBold28(),currentIndex: currentIndex),
+                    CustomSliderSizedBox(imgUrl: "assets/images/shirts.jpg", title1: "Men's Clothing", title2: "Min. 50% off", description1: "", description2: "",
+                        title1TextStyle: myTextStyleBold24(fontColor: Colors.white), title2TextStyle: myTextStyleExtraBold28(fontColor: Colors.white),currentIndex: currentIndex),
+                  ],
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        viewportFraction: 1,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
+                      )),
+                  Positioned(
+                    bottom: 10,
+                    left: 150,
+                    child: Row(
+                        children:
+                        AppConstant.sliderItemList.asMap().entries.map((entry) {
+                          return currentIndex == entry.key ? Container(
+                            width: 17 ,
+                            height: 7,
+                            margin: const EdgeInsets.symmetric(horizontal:2),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: Colors.black),
+                                color: AppColors.primaryColor
+                            ),
+                          ) : Container(
+                            width: 7,
+                            height: 7,
+                            margin: const EdgeInsets.symmetric(horizontal:2),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border.all(color: Colors.black),
+                                color: Colors.white
+                            ),
+                          );
+                        },).toList()
+                    ),)
+                ],
+              ),
               const SizedBox(height: 25,),
               SizedBox(
                 width: double.infinity,
                 height: 100,
-                child: ListView.builder(itemCount:categoryList.length,scrollDirection: Axis.horizontal,itemBuilder: (context, index) {
+                child: ListView.builder(itemCount:AppConstant.categoryList.length,scrollDirection: Axis.horizontal,itemBuilder: (context, index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -352,11 +121,11 @@ class _NavHomePageState extends State<NavHomePage> {
                         height: 50,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            image: DecorationImage(image: AssetImage(categoryList[index]["image"],),fit: BoxFit.fill)
+                            image: DecorationImage(image: AssetImage(AppConstant.categoryList[index]["image"],),fit: BoxFit.fill)
                         ),
                       ),
                       const SizedBox(height: 5,),
-                      SizedBox(width:70,child: Center(child: Text(categoryList[index]["name"],maxLines: 2,style: myTextStyle13(),)))
+                      SizedBox(width:70,child: Center(child: Text(AppConstant.categoryList[index]["name"],maxLines: 2,style: myTextStyle13(),)))
                     ],
                   );
                 },),
@@ -396,8 +165,8 @@ class _NavHomePageState extends State<NavHomePage> {
                               Container(
                                 width: 40,
                                 height: 40,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(topRight: Radius.circular(20),bottomLeft: Radius.circular(10)),
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomLeft: Radius.circular(10)),
                                   color: AppColors.primaryColor,
                                 ),
                                 child: IconButton(onPressed: (){}, icon:Image.asset("assets/icons/heart.png",width: 20,height: 20,color: Colors.white,)),
@@ -411,7 +180,7 @@ class _NavHomePageState extends State<NavHomePage> {
                             padding: const EdgeInsets.only(left: 10),
                             child: Text(AppConstant.specialItemList[index].name,style: myTextStyleBold14(),),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(height: 10,),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Row(
@@ -424,58 +193,23 @@ class _NavHomePageState extends State<NavHomePage> {
                                   ],
                                 ),
                                 SizedBox(
-                                  width: 80,
+                                  width: 86,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Stack(
                                           alignment: Alignment.center,
                                           children:[
-                                            Container(
-                                              width: 20,
-                                              height: 20,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(50),
-                                                  border: Border.all(color: Colors.black)
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 15,
-                                              height: 15,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(50),
-                                                  color: AppConstant.specialItemList[index].firstColor
-                                              ),
-                                            ),
+                                            CustomContainer(color: Colors.transparent, width: 21, height: 21, border: Border.all(color: Colors.black)),
+                                            CustomContainer(color: AppConstant.specialItemList[index].firstColor,width: 16, height: 16)
                                           ]),
-                                      Container(
-                                        width: 15,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            color: AppConstant.specialItemList[index].secondColor
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 15,
-                                        height: 15,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            color: AppConstant.specialItemList[index].thirdColor
-                                        ),
-                                      ),
+                                      CustomContainer(color:  AppConstant.specialItemList[index].secondColor,width: 16, height: 16),
+                                      CustomContainer(color: AppConstant.specialItemList[index].thirdColor,width: 16, height: 16),
                                       Stack(
                                           alignment: Alignment.center,
                                           children:[
-                                            Container(
-                                              width: 15,
-                                              height: 15,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(50),
-                                                  border: Border.all(color:AppColors.darkGreyColor)
-                                              ),
-                                            ),
-                                            Text("+2",style: myTextStyle6(fontColor: AppColors.darkGreyColor),)
+                                            CustomContainer(color: AppColors.lightGreyColor,border: Border.all(color:AppColors.darkGreyColor),width: 16, height: 16),
+                                            Text("+2",style: myTextStyle7(fontColor: Colors.grey.shade800),)
                                           ]),
                                     ],
                                   ),

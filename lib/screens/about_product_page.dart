@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_app/constants/app_constant.dart';
 import 'package:ecommerce_app/screens/tab_pages/description_page.dart';
 import 'package:ecommerce_app/screens/tab_pages/reviews_page.dart';
 import 'package:ecommerce_app/screens/tab_pages/specification_page.dart';
 import 'package:flutter/material.dart';
+import '../app_widgets/custom_container.dart';
 import '../utils/util_helper.dart';
 import 'nav_pages/nav_cart_page.dart';
 
@@ -13,13 +15,6 @@ class SpecialItemPage extends StatefulWidget{
 
 class _SpecialItemPageState extends State<SpecialItemPage> {
   int currentIndex = 0;
-  List<String> imageList = [
-    "assets/images/x_prime.png",
-    "assets/images/x_prime_2.png",
-    "assets/images/x_prime_3.png",
-    "assets/images/x_prime_4.png",
-    "assets/images/x_prime_5.png"
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +48,7 @@ class _SpecialItemPageState extends State<SpecialItemPage> {
                   color: AppColors.lightGreyColor,
                   child: Stack(
                       children:[
-                        CarouselSlider(items:imageList.map((element) {
+                        CarouselSlider(items:AppConstant.imageList.map((element) {
                           return Image.asset(element,width: 200,height: 200,);
                         },).toList(),options: CarouselOptions(
                           autoPlay: true,
@@ -69,9 +64,9 @@ class _SpecialItemPageState extends State<SpecialItemPage> {
                           left: 180,
                           child: Row(
                               children:
-                              imageList.asMap().entries.map((entry) {
+                              AppConstant.imageList.asMap().entries.map((entry) {
                                 return currentIndex == entry.key ? Container(
-                                  width: 17 ,
+                                  width: 17,
                                   height: 7,
                                   margin: const EdgeInsets.symmetric(horizontal:2),
                                   decoration: BoxDecoration(
@@ -90,7 +85,6 @@ class _SpecialItemPageState extends State<SpecialItemPage> {
                                   ),
                                 );
                               },).toList()
-
                           ),)
                       ]
                   ),
@@ -143,58 +137,16 @@ class _SpecialItemPageState extends State<SpecialItemPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: AppColors.darkRed
-                                  ),
-                                ),
+                                CustomContainer(color: AppColors.darkRed, width: 30, height: 30,),
                                 Stack(
                                     alignment: Alignment.center,
                                     children:[
-                                      Container(
-                                        width: 38,
-                                        height: 38,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            border: Border.all(color: Colors.black)
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            color: Colors.black
-                                        ),
-                                      ),
+                                      CustomContainer(color: Colors.transparent, width: 38, height: 38, border: Border.all(color: Colors.black)),
+                                      CustomContainer(color:Colors.black, width: 30, height: 30,),
                                     ]),
-                                Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: AppColors.blueColor
-                                  ),
-                                ),
-                                Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: AppColors.darkBrown
-                                  ),
-                                ),
-                                Container(
-                                  width: 30,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: AppColors.lightGreyColor
-                                  ),
-                                ),
+                               CustomContainer(color: AppColors.blueColor, width: 30, height: 30),
+                               CustomContainer(color: AppColors.darkBrown, width: 30, height: 30),
+                               CustomContainer(color:  AppColors.lightGreyColor, width: 30, height: 30),
                               ],
                             ),
                           ),
