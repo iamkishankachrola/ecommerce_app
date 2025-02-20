@@ -1,7 +1,6 @@
-import 'package:ecommerce_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
-import '../utils/util_helper.dart';
-
+import '../domain/constants/app_constant.dart';
+import '../domain/utils/util_helper.dart';
 class CartPage extends StatelessWidget{
   TextEditingController discountController = TextEditingController();
   @override

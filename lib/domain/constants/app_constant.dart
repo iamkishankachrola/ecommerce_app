@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/special_item_model.dart';
+import '../../data/local/model/special_item_model.dart';
 import '../utils/util_helper.dart';
 
 class AppConstant{
@@ -128,4 +128,5 @@ class AppConstant{
       "text" : "Shop Now",
     },
   ];
+
 }

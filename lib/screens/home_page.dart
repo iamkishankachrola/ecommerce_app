@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:ecommerce_app/screens/cart_page.dart';
 import 'package:flutter/material.dart';
-import '../utils/util_helper.dart';
+import '../domain/utils/util_helper.dart';
 import 'nav_pages/nav_cart_page.dart';
 import 'nav_pages/nav_home_page.dart';
 import 'nav_pages/nav_like_page.dart';

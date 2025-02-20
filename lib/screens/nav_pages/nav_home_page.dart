@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/app_widgets/custom_slider_sizedbox.dart';
-import 'package:ecommerce_app/constants/app_constant.dart';
 import 'package:flutter/material.dart';
-import '../../app_widgets/custom_container.dart';
-import '../../utils/util_helper.dart';
+import '../../domain/constants/app_constant.dart';
+import '../../domain/utils/util_helper.dart';
 import '../about_product_page.dart';
+import '../app_widgets/custom_container.dart';
+import '../app_widgets/custom_slider_sizedbox.dart';
 
 class NavHomePage extends StatefulWidget{
   @override
@@ -32,7 +32,21 @@ class _NavHomePageState extends State<NavHomePage> {
           actions: [
             IconButton(onPressed: (){}, icon: const Icon(Icons.notifications_none_rounded),
               style: IconButton.styleFrom(backgroundColor: AppColors.lightGreyColor,foregroundColor: Colors.black),),
-            const SizedBox(width:10)
+            PopupMenuButton(
+              position: PopupMenuPosition.under,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+              itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
+                  child:Row(
+                    children: [
+                      Icon(Icons.logout_outlined,color: AppColors.primaryColor),
+                      SizedBox(width: 10,),
+                      Text("Logout",style: TextStyle(color: AppColors.primaryColor),)
+                    ],
+                  ),
+                )];
+            },)
           ],
         ),
         body: Padding(
@@ -59,6 +73,7 @@ class _NavHomePageState extends State<NavHomePage> {
               ),
               const SizedBox(height: 20,),
               Stack(
+                alignment: Alignment.bottomCenter,
                 children: [
                   CarouselSlider(items: [
                     CustomSliderSizedBox(imgUrl: "assets/images/shoes.jpg", title1: "Super Sale", title2: "Discount", description1: "Up to ", description2: "50%",
@@ -79,35 +94,37 @@ class _NavHomePageState extends State<NavHomePage> {
                           });
                         },
                       )),
-                  Positioned(
-                    bottom: 10,
-                    left: 150,
-                    child: Row(
-                        children:
-                        AppConstant.sliderItemList.asMap().entries.map((entry) {
-                          return currentIndex == entry.key ? Container(
-                            width: 17 ,
-                            height: 7,
-                            margin: const EdgeInsets.symmetric(horizontal:2),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.black),
-                                color: AppColors.primaryColor
-                            ),
-                          ) : Container(
-                            width: 7,
-                            height: 7,
-                            margin: const EdgeInsets.symmetric(horizontal:2),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                border: Border.all(color: Colors.black),
-                                color: Colors.white
-                            ),
-                          );
-                        },).toList()
-                    ),)
-                ],
-              ),
+                  Align(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                          children:
+                          AppConstant.sliderItemList.asMap().entries.map((entry) {
+                            return currentIndex == entry.key ? Container(
+                              width: 17 ,
+                              height: 7,
+                              margin: const EdgeInsets.symmetric(horizontal:2),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: Colors.black),
+                                  color: AppColors.primaryColor
+                              ),
+                            ) : Container(
+                              width: 7,
+                              height: 7,
+                              margin: const EdgeInsets.symmetric(horizontal:2),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(color: Colors.black),
+                                  color: Colors.white
+                              ),
+                            );
+                          },).toList()
+                      ),
+                    ),
+                  )
+                ]),
               const SizedBox(height: 25,),
               SizedBox(
                 width: double.infinity,

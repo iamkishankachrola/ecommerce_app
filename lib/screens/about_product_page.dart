@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/constants/app_constant.dart';
 import 'package:ecommerce_app/screens/tab_pages/description_page.dart';
 import 'package:ecommerce_app/screens/tab_pages/reviews_page.dart';
 import 'package:ecommerce_app/screens/tab_pages/specification_page.dart';
 import 'package:flutter/material.dart';
-import '../app_widgets/custom_container.dart';
-import '../utils/util_helper.dart';
+import '../domain/constants/app_constant.dart';
+import '../domain/utils/util_helper.dart';
+import 'app_widgets/custom_container.dart';
 import 'nav_pages/nav_cart_page.dart';
 
 class SpecialItemPage extends StatefulWidget{
@@ -47,44 +47,52 @@ class _SpecialItemPageState extends State<SpecialItemPage> {
                   height: 250,
                   color: AppColors.lightGreyColor,
                   child: Stack(
+                      alignment: Alignment.bottomCenter,
                       children:[
-                        CarouselSlider(items:AppConstant.imageList.map((element) {
-                          return Image.asset(element,width: 200,height: 200,);
-                        },).toList(),options: CarouselOptions(
-                          autoPlay: true,
-                          viewportFraction: 1,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-                        )),
-                        Positioned(
-                          bottom: 10,
-                          left: 180,
-                          child: Row(
-                              children:
-                              AppConstant.imageList.asMap().entries.map((entry) {
-                                return currentIndex == entry.key ? Container(
-                                  width: 17,
-                                  height: 7,
-                                  margin: const EdgeInsets.symmetric(horizontal:2),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(color: Colors.black),
-                                      color: AppColors.primaryColor
-                                  ),
-                                ) : Container(
-                                  width: 7,
-                                  height: 7,
-                                  margin: const EdgeInsets.symmetric(horizontal:2),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(color: Colors.black),
-                                      color: Colors.white
-                                  ),
-                                );
-                              },).toList()
+                        CarouselSlider.builder(itemCount: AppConstant.imageList.length,
+                            itemBuilder: (context, index, realIndex) {
+                              return Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: Image.asset(AppConstant.imageList[index],width:180,height:180,),
+                              );
+                            }, options:CarouselOptions(
+                              autoPlay: true,
+                              viewportFraction: 1,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  currentIndex = index;
+                                });
+                              },
+                            )),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:
+                                AppConstant.imageList.asMap().entries.map((entry) {
+                                  return currentIndex == entry.key ? Container(
+                                    width: 17,
+                                    height: 7,
+                                    margin: const EdgeInsets.symmetric(horizontal:2),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: Colors.black),
+                                        color: AppColors.primaryColor
+                                    ),
+                                  ) : Container(
+                                    width: 7,
+                                    height: 7,
+                                    margin: const EdgeInsets.symmetric(horizontal:2),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        border: Border.all(color: Colors.black),
+                                        color: Colors.white
+                                    ),
+                                  );
+                                },).toList()
+                            ),
                           ),)
                       ]
                   ),

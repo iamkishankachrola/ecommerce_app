@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import '../../utils/util_helper.dart';
-
+import '../../domain/utils/util_helper.dart';
 class SpecificationPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
