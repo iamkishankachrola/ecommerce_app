@@ -4,7 +4,6 @@ import 'package:ecommerce_app/screens/home_page.dart';
 import 'package:ecommerce_app/screens/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/utils/util_helper.dart';
 import 'app_widgets/custom_card_widget.dart';
 import 'app_widgets/custom_text_field_widget.dart';
@@ -19,39 +18,43 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool visibility = false;
-  String token = " ";
+  bool isLoading = false;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
+    return Form(
+      key: formKey,
+      child: Scaffold(
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: const Icon(Icons.arrow_back_ios_new,size: 30,)),
-      ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: MediaQuery.of(context).orientation==Orientation.landscape ?
-          Row(
-            children: [
-              Expanded(child: Column(
-                children: [
-                  SizedBox(height: height*0.22),
-                  logInText()
-                ],
-              )),
-              Expanded(child: ListView(children:[logInForm()] ))
-            ],
-          ) :
-          ListView(
-            children: [
-              logInText(),
-              logInForm()
-            ],
-          )
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(onPressed: (){
+            Navigator.pop(context);
+          }, icon: const Icon(Icons.arrow_back_ios_new,size: 30,)),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: MediaQuery.of(context).orientation==Orientation.landscape ?
+            Row(
+              children: [
+                Expanded(child: Column(
+                  children: [
+                    SizedBox(height: height*0.22),
+                    logInText()
+                  ],
+                )),
+                Expanded(child: ListView(children:[logInForm()] ))
+              ],
+            ) :
+            ListView(
+              children: [
+                logInText(),
+                logInForm()
+              ],
+            )
+        ),
       ),
     );
   }
@@ -77,14 +80,41 @@ class _LoginPageState extends State<LoginPage> {
         children:
         [
           MediaQuery.of(context).orientation==Orientation.landscape?const SizedBox(height:0,):const SizedBox(height:20),
-          CustomTextFieldWidget(controller: emailController,hintText: "Enter your email",keyboardType: TextInputType.emailAddress ,preFixIcon: const Icon(Icons.email_outlined,color: Colors.grey,),lableText: "Email",),
+          CustomTextFieldWidget(controller: emailController,hintText: "Enter your email",keyboardType: TextInputType.emailAddress ,preFixIcon: const Icon(Icons.email_outlined,color: Colors.grey,),lableText: "Email",
+          validator: (value) {
+            if(value!.isEmpty){
+              return "Please enter your email";
+            }else if(!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                .hasMatch(value)){
+              return "Please enter a valid email";
+            }else{
+              return null;
+            }
+          }),
           const SizedBox(height: 20,),
           CustomTextFieldWidget(controller: passwordController,hintText: "Enter your password", keyboardType:TextInputType.visiblePassword,obscureText: visibility?false:true,preFixIcon: const Icon(Icons.lock_outline_rounded,color: Colors.grey,),lableText: "Password",
           suffixIcon:IconButton(onPressed: (){
                 setState(() {
                 visibility = !visibility;
                 });
-            }, icon: visibility==true ? const Icon(Icons.visibility_outlined, color: Colors.grey,) : const Icon(Icons.visibility_off_outlined, color: Colors.grey,)  ),),
+            }, icon: visibility==true ? const Icon(Icons.visibility_outlined, color: Colors.grey,) : const Icon(Icons.visibility_off_outlined, color: Colors.grey,)  ),
+          validator: (value) {
+            if(value!.isEmpty){
+              return "Please enter your password";
+            }else if(!value.contains(RegExp(r'[A-Z]'))){
+              return "Password should contain at least one uppercase letter";
+            }else if(!value.contains(RegExp(r'[a-z]'))){
+              return "Password should contain at least one lowercase letter";
+            }else if(!value.contains(RegExp(r'[0-9]'))){
+              return "Password should contain at least one digit";
+            }else if(!value.contains(RegExp(r'[!@#%^&*(),.?":{}|<>]'))){
+              return "Password should contain at least one special character";
+            }else if(value.length < 8){
+              return "Password should be at least 8 characters long";
+            }else{
+              return null;
+            }
+          },),
            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -100,26 +130,42 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 20,),
            BlocListener<LoginBloc,LoginState>(
              listener: (context, state) {
+               if(state is LoginLoadingState){
+                 isLoading = true;
+                 setState(() {});
+               }
                if(state is LoginErrorState){
+                 isLoading = false;
+                 setState(() {});
                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMsg)));
                }else if(state is LoginLoadedState){
-                 token = state.loginUserData["tokan"];
+                 isLoading = false;
+                 setState(() {});
                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.loginUserData["message"])));
                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
                }},
                 child : ElevatedButton(onPressed: () async{
-                      context.read<LoginBloc>().add(LoginUserEvent(bodyParams: {
+                      if(formKey.currentState!.validate()){
+                        context.read<LoginBloc>().add(LoginUserEvent(bodyParams: {
                           "email" : emailController.text,
                           "password" : passwordController.text
-                      }));
-                      SharedPreferences prefs = await SharedPreferences.getInstance();
-                      prefs.setString("token", token);
+                        }));
+                      }
                   }, style: ElevatedButton.styleFrom(
                    backgroundColor: AppColors.primaryColor, elevation: 3,
                     shadowColor: Colors.black,
                    minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                         child: Text("Log In",style: myTextStyleBold18(fontColor: Colors.white)),)
+                         child:  isLoading ? Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Text("Log In...",style: myTextStyleBold18(fontColor: Colors.white)),
+                             const SizedBox(width: 15,),
+                             const SizedBox(
+                                 width: 20,
+                                 height: 20,
+                                 child: CircularProgressIndicator(color: Colors.white,))
+                           ],) : Text("Log In",style: myTextStyleBold18(fontColor: Colors.white)),)
            ),
           const SizedBox(height: 20,),
           Row(

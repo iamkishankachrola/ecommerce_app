@@ -1,16 +1,31 @@
 import 'package:ecommerce_app/data/remote/api_helper.dart';
 import 'package:ecommerce_app/data/repository/ecommerce_repository.dart';
+import 'package:ecommerce_app/screens/bloc/add_to_cart_bloc/add_to_cart_bloc.dart';
+import 'package:ecommerce_app/screens/bloc/categories_bloc/categories_bloc.dart';
+import 'package:ecommerce_app/screens/bloc/create_order_bloc/create_order_bloc.dart';
+import 'package:ecommerce_app/screens/bloc/decrement_quantity_bloc/decrement_count_bloc.dart';
+import 'package:ecommerce_app/screens/bloc/get_order_bloc/get_order_bloc.dart';
 import 'package:ecommerce_app/screens/bloc/login_bloc/login_bloc.dart';
+import 'package:ecommerce_app/screens/bloc/products_bloc/products_bloc.dart';
 import 'package:ecommerce_app/screens/bloc/register_bloc/register_bloc.dart';
+import 'package:ecommerce_app/screens/bloc/view_cart_bloc/view_cart_bloc.dart';
 import 'package:ecommerce_app/screens/login_page.dart';
 import 'package:ecommerce_app/screens/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(MultiBlocProvider(providers: [
+  runApp(
+    MultiBlocProvider(providers: [
       BlocProvider(create: (context) => RegisterBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper()))),
       BlocProvider(create: (context) => LoginBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper()))),
+      BlocProvider(create: (context) => ProductsBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),),
+      BlocProvider(create: (context) => CategoriesBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),),
+      BlocProvider(create: (context) => CartBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),),
+      BlocProvider(create: (context) => ViewCartBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),),
+      BlocProvider(create: (context) => DecrementCountBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),),
+      BlocProvider(create: (context) => CreateOrderBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),),
+      BlocProvider(create: (context) => GetOrderBloc(ecommerceRepository: EcommerceRepository(apiHelper: ApiHelper())),)
       ],
     child:const MyApp()),);
 }

@@ -33,65 +33,30 @@ class AppConstant{
         secondColor: AppColors.primaryColor,
         thirdColor:Colors.yellowAccent,),
   ];
-  static const List<Map<String,dynamic>> cartItems = [
-    {
-      "image" : "assets/images/noise_earbuds.png",
-      "name" : "Wireless Headphones",
-      "category" : "Electronics",
-      "amount" : "1500"
-    },
-    {
-      "image" : "assets/images/women_sweater.png",
-      "name" : "Women Sweater",
-      "category" : "Women's Fashion",
-      "amount" : "700"
-    },
-    {
-      "image" : "assets/images/nike_quest_shoes.png",
-      "name" : "Nike Quest Shoes",
-      "category" : "Shoes",
-      "amount" : "5000"
-    },
-  ];
-  static const List<String> imageList = [
-    "assets/images/x_prime.png",
-    "assets/images/x_prime_2.png",
-    "assets/images/x_prime_3.png",
-    "assets/images/x_prime_4.png",
-    "assets/images/x_prime_5.png"
-  ];
   static const List<Map<String,dynamic>> categoryList = [
     {
-      "image" : "assets/images/nike_shoes.jpeg",
+      "image" : "assets/images/oppo.png",
       "name" : "Shoes"
     },
     {
-      "image" : "assets/images/mobiles.jpeg",
+      "image" : "assets/images/lenovo.jpeg",
       "name" : "Mobiles"
     },
     {
-      "image" : "assets/images/leptops.jpg",
+      "image" : "assets/images/apple.jpeg",
       "name" : "Electronics"
     },
     {
-      "image" : "assets/images/men_fashion.jpeg",
+      "image" : "assets/images/samsung.jpg",
       "name" : "   Men's \n\t\tFashion"
     },
     {
-      "image" : "assets/images/women_fashion.jpeg",
+      "image" : "assets/images/mi.jpg",
       "name" : " Women's \n\t\tFashion"
     },
     {
-      "image" : "assets/images/jwellery_items.jpeg",
+      "image" : "assets/images/vivo.jpg",
       "name" : "Jewellery "
-    },
-    {
-      "image" : "assets/images/appliances_items.jpg",
-      "name" : "Appliances"
-    },
-    {
-      "image" : "assets/images/mackup_item.jpg",
-      "name" : "Beauty"
     },
   ];
   static const List<Map<String,dynamic>> sliderItemList = [
@@ -120,7 +85,7 @@ class AppConstant{
       "text" : "Shop Now",
     },
     {
-      "image" : "assets/images/shirts.jpg",
+      "image" : "assets/images/shirt.jpg",
       "title1" : "Men's Clothing",
       "title2" : "",
       "description1" : "Min. 50% off",
@@ -128,5 +93,33 @@ class AppConstant{
       "text" : "Shop Now",
     },
   ];
-
+  static List<List<String>> productImageList = [
+    [
+      "assets/images/product_images/vivoy20_1.png",
+      "assets/images/product_images/vivoy20_2.png",
+      "assets/images/product_images/vivoy20_3.png",
+      "assets/images/product_images/vivoy20_4.png",
+    ],
+    [
+      "assets/images/product_images/oppoa17_1.png",
+      "assets/images/product_images/oppoa17_2.png",
+      "assets/images/product_images/oppoa17_3.png",
+      "assets/images/product_images/oppoa17_4.png",
+    ],
+    [
+      "assets/images/product_images/redmi_1.png",
+      "assets/images/product_images/redmi_3.png",
+      "assets/images/product_images/redmi_4.png",
+      "assets/images/product_images/redmi_2.png"
+    ],
+    [
+      "assets/images/product_images/iphone_1.png",
+      "assets/images/product_images/iphone_2.png",
+      "assets/images/product_images/iphone_3.png",
+      "assets/images/product_images/iphone_4.png",
+    ]
+  ];
+  static const List<String> sellerName = [
+    "Vivo","Oppo","Realme","Apple"
+  ];
 }

@@ -16,6 +16,7 @@ class _SplashPageState extends State<SplashPage> {
     Timer(const Duration(seconds: 4), () async{
       SharedPreferences prefs =  await SharedPreferences.getInstance();
       var token = prefs.getString("token");
+      print("USER TOKEN IS: $token");
       if(token != null){
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
       }else{

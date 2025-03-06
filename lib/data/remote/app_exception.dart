@@ -3,7 +3,7 @@ class AppException implements Exception{
   String body;
   AppException({required this.title, required this.body});
   String toErrorMsg(){
-    return "$title: $body";
+    return "$title : $body";
   }
 }
 

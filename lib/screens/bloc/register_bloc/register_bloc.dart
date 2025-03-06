@@ -20,6 +20,5 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState>{
         emit(RegisterErrorState(errorMsg: (e as AppException).toErrorMsg()));
       }
     });
-
   }
 }

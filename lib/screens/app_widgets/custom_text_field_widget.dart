@@ -9,11 +9,13 @@ class CustomTextFieldWidget extends StatelessWidget{
   TextEditingController? controller;
   bool obscureText;
   String lableText;
+  String? Function(String?)? validator;
   TextInputType keyboardType;
-  CustomTextFieldWidget({super.key, required this.hintText, required this.preFixIcon,required this.controller,required this.keyboardType,required this.lableText,this.suffixIcon,this.obscureText = false});
+  CustomTextFieldWidget({required this.hintText, required this.preFixIcon,required this.controller,required this.keyboardType,required this.lableText,this.validator,this.suffixIcon,this.obscureText = false});
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+        validator: validator,
         controller: controller,
         keyboardType: keyboardType,
         obscureText: obscureText,
@@ -29,6 +31,20 @@ class CustomTextFieldWidget extends StatelessWidget{
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
                   color: AppColors.primaryColor,
+                  width: 2,
+                )
+            ),
+            errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Colors.red,
+                  width: 2,
+                )
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Colors.red,
                   width: 2,
                 )
             ),

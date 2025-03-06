@@ -2,6 +2,7 @@ import 'package:ecommerce_app/data/repository/ecommerce_repository.dart';
 import 'package:ecommerce_app/screens/bloc/login_bloc/login_event.dart';
 import 'package:ecommerce_app/screens/bloc/login_bloc/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../data/remote/app_exception.dart';
 
 class LoginBloc extends Bloc<LoginEvent,LoginState>{
@@ -13,6 +14,8 @@ class LoginBloc extends Bloc<LoginEvent,LoginState>{
         var userData = await ecommerceRepository.loginUser(bodyParams: event.bodyParams);
         if(userData["status"]){
           emit(LoginLoadedState(loginUserData: userData));
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString("token", userData["tokan"]);
         }else{
           emit(LoginErrorState(errorMsg: userData["message"]));
         }
